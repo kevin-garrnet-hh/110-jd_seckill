@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     jd_seckill = JdSeckill()
     #choice_function = input('请选择:')
-    choice_function = '1'
+    choice_function = '2'
     if choice_function == '1':
         jd_seckill.reserve()
     elif choice_function == '2':

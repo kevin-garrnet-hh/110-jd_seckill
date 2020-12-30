@@ -363,11 +363,15 @@ class JdSeckill(object):
                     stop = self.submit_seckill_order()
                     if stop:
                         break
+                    # else:
+                    #     break
             except Exception as e:
                 logger.info('抢购发生异常，稍后继续执行！', e)
             wait_some_time()
             if stop:
                 break
+            # else:
+            #     break
 
     def make_reserve(self):
         """商品预约"""
