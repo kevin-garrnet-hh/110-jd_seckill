@@ -26,6 +26,7 @@ class SpiderSession:
     """
     Session相关操作
     """
+
     def __init__(self):
         self.cookies_dir_path = "./cookies/"
         self.user_agent = global_config.getRaw('config', 'DEFAULT_USER_AGENT')
@@ -101,6 +102,7 @@ class QrLogin:
     """
     扫码登录
     """
+
     def __init__(self, spider_session: SpiderSession):
         """
         初始化扫码登录
@@ -302,12 +304,14 @@ class JdSeckill(object):
         """
         用户登陆态校验装饰器。若用户未登陆，则调用扫码登陆
         """
+
         @functools.wraps(func)
         def new_func(self, *args, **kwargs):
             if not self.qrlogin.is_login:
                 logger.info("{0} 需登陆后调用，开始扫码登陆".format(func.__name__))
                 self.login_by_qrcode()
             return func(self, *args, **kwargs)
+
         return new_func
 
     @check_login
@@ -350,15 +354,20 @@ class JdSeckill(object):
         """
         抢购
         """
+        stop = False
         while True:
             try:
                 self.request_seckill_url()
                 while True:
                     self.request_seckill_checkout_page()
-                    self.submit_seckill_order()
+                    stop = self.submit_seckill_order()
+                    if stop:
+                        break
             except Exception as e:
                 logger.info('抢购发生异常，稍后继续执行！', e)
             wait_some_time()
+            if stop:
+                break
 
     def make_reserve(self):
         """商品预约"""
