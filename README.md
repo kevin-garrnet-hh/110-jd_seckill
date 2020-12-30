@@ -123,3 +123,5 @@
 ## 感谢
 ##### 非常感谢原作者 https://github.com/zhou-xiaojun/jd_mask 提供的代码
 ##### 也非常感谢 https://github.com/wlwwu/jd_maotai 进行的优化
+eid: D4BDAAFQKICVXIYE3X3U4I7NP6DS3XHTO6V67NPDAURZ3XHS7OHLGNKNKGPS4RVMINSKPTHVIBG5NKIVQLPBG5TX4Q
+fp: 01c654128996f361d844929850092e38
