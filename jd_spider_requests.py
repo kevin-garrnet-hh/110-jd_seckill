@@ -316,9 +316,7 @@ class JdSeckill(object):
 
     @check_login
     def reserve(self):
-        """
-        预约
-        """
+        logger.info("============预约==============")
         self._reserve()
 
     @check_login
@@ -330,10 +328,7 @@ class JdSeckill(object):
 
     @check_login
     def seckill_by_proc_pool(self, work_count=8):
-        """
-        多进程进行抢购
-        work_count：进程数量
-        """
+        logger.info("============多进程进行抢购，进程数量：%s==============", work_count)
         with ProcessPoolExecutor(work_count) as pool:
             for i in range(work_count):
                 pool.submit(self.seckill)
@@ -389,7 +384,7 @@ class JdSeckill(object):
         resp = self.session.get(url=url, params=payload, headers=headers)
         resp_json = parse_json(resp.text)
         reserve_url = resp_json.get('url')
-        self.timers.start()
+        self.timers.start_reserve()
         while True:
             try:
                 self.session.get(url='https:' + reserve_url)
@@ -473,7 +468,7 @@ class JdSeckill(object):
         """访问商品的抢购链接（用于设置cookie等"""
         logger.info('用户:{}'.format(self.get_username()))
         logger.info('商品名称:{}'.format(self.get_sku_title()))
-        self.timers.start()
+        self.timers.start_seckill()
         self.seckill_url[self.sku_id] = self.get_seckill_url()
         logger.info('访问商品的抢购连接...')
         headers = {

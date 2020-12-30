@@ -57,7 +57,7 @@ USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
     "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.15 (KHTML, like Gecko) Chrome/24.0.1295.0 Safari/537.15",
     "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.14 (KHTML, like Gecko) Chrome/24.0.1292.0 Safari/537.14"
-    ]
+]
 
 
 def parse_json(s):
@@ -81,11 +81,11 @@ def send_wechat(message):
     """推送信息到微信"""
     url = 'http://sc.ftqq.com/{}.send'.format(global_config.getRaw('messenger', 'sckey'))
     payload = {
-        "text":'抢购结果',
+        "text": '抢购结果',
         "desp": message
     }
     headers = {
-        'User-Agent':global_config.getRaw('config', 'DEFAULT_USER_AGENT')
+        'User-Agent': global_config.getRaw('config', 'DEFAULT_USER_AGENT')
     }
     requests.get(url, params=payload, headers=headers)
 
