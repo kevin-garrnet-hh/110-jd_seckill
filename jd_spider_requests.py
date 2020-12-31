@@ -327,7 +327,7 @@ class JdSeckill(object):
         self._seckill()
 
     @check_login
-    def seckill_by_proc_pool(self, work_count=8):
+    def seckill_by_proc_pool(self, work_count=10):
         logger.info("============多进程进行抢购，进程数量：%s==============", work_count)
         with ProcessPoolExecutor(work_count) as pool:
             for i in range(work_count):
