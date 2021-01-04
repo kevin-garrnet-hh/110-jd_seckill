@@ -9,7 +9,7 @@ from config import global_config
 
 
 class Timer(object):
-    def __init__(self, sleep_interval=0.2):
+    def __init__(self, sleep_interval=0.1):
         # '2018-09-28 22:45:50.000'
         self.reserve_time = datetime.strptime(global_config.getRaw('config', 'reserve_time'), "%Y-%m-%d %H:%M:%S.%f")
         self.buy_time = datetime.strptime(global_config.getRaw('config', 'buy_time'), "%Y-%m-%d %H:%M:%S.%f")
